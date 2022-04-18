@@ -6,8 +6,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        lobster: ['Lobster', 'sans-serif'],
-        fredoka: ['Fredoka', 'sans-serif']
+        'archivo': ['Archivo', 'sans-serif'],
+        'fredoka': ['Fredoka', 'sans-serif']
       }
     },
   },

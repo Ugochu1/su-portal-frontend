@@ -7,7 +7,7 @@ function FormText(props) {
   let [show, setShow] = useState(false);
 
   return (
-    <div className="font-fredoka">
+    <div className="font-archivo">
       {formArray.map((form_list, index) => {
         let { label, required, type, name, placeholder } = form_list;
         if (type === "password") {

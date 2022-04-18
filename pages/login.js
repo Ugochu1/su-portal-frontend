@@ -15,12 +15,12 @@ function Login() {
   }
 
   return (
-    <div className="bg-green-50 h-screen font-fredoka flex flex-col justify-center items-center">
+    <div className="bg-green-50 h-screen flex flex-col justify-center items-center">
       <div className="logo">
         <Logo />
       </div>
       <div className="w-full lg:w-1/3 bg-white py-10 px-4 rounded shadow-md">
-        <div className="text-center text-2xl font-bold mb-10 text-green-700 tracking-tight">
+        <div className="text-center text-2xl font-extrabold font-archivo mb-10 text-green-700 tracking-tight">
           Login to your account
         </div>
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -30,7 +30,7 @@ function Login() {
             errors={errors}
           />
           <div className="flex justify-end">
-            <button className="py-1 px-4 rounded bg-green-700 w-full shadow-md mt-10 border-2 border-green-700 text-green-50 uppercase font-semibold">
+            <button className="py-1 px-4 rounded bg-green-700 w-full shadow-md mt-10 border-2 border-green-700 text-green-50 font-archivo uppercase font-semibold">
               Log In
             </button>
           </div>
