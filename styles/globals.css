@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'Lobster';
+  src: url("C:\\Users\\Yugee\\Projects\\su-portal-frontend\\fonts\\Lobster\\Lobster-Regular.ttf");
+}
+
+@font-face {
+  font-family: 'Fredoka';
+  src: url("C:\\Users\\Yugee\\Projects\\su-portal-frontend\\fonts\\Fredoka_One\\FredokaOne-Regular.ttf");
+}
