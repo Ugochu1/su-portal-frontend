@@ -3,7 +3,7 @@ import { BsFillEyeSlashFill } from "react-icons/bs";
 import { useState } from "react";
 
 function FormText(props) {
-  let { formArray, register, errors } = props;
+  let { formArray, register, errors, defaultValue } = props;
   let [show, setShow] = useState(false);
 
   return (
@@ -14,7 +14,7 @@ function FormText(props) {
           return (
             <div id="input_container" className="px-3" key={index}>
               <label>
-                <div className="text-sm mb-2 font-semibold">{label}</div>
+                <div className="text-sm mb-2 ">{label}</div>
                 <div className="flex items-start justify-center">
                   <input
                     className="w-full py-2 px-2 bg-gray-100 rounded focus:outline-none"
@@ -33,19 +33,75 @@ function FormText(props) {
                   >
                     {show === false ? (
                       <div className="flex items-center justify-center mt-2 h-full p-1">
-                        <BsFillEyeFill scale={40}/>
+                        <BsFillEyeFill scale={40} />
                       </div>
                     ) : (
                       <div className="flex items-center justify-center mt-2 h-full p-1">
-                        <BsFillEyeSlashFill scale={40}/>
+                        <BsFillEyeSlashFill scale={40} />
                       </div>
                     )}
                   </div>
                 </div>
               </label>
-              {form_list.instructions === true
-                ? "Password should be between 3 and 15 characters"
-                : ""}
+              <div className="text-xs text-red-600">
+                {errors.password?.type === "required" ? "Input password" : ""}
+              </div>
+            </div>
+          );
+        } else if (type == "textarea") {
+          return (
+            <div id="input_container" className="px-3 mb-4" key={index}>
+              <label>
+                <div className="text-sm mb-2">{label}</div>
+                <div>
+                  <textarea
+                    className="w-full py-2 px-2 bg-gray-100 rounded focus:outline-none"
+                    type={type}
+                    name={name}
+                    defaultValue={
+                      defaultValue == ""
+                        ? ""
+                        : name == "title"
+                        ? defaultValue.title
+                        : name == "video_link"
+                        ? defaultValue.video_link
+                        : name == "module_text" && defaultValue.module_text
+                    }
+                    placeholder={placeholder}
+                    {...register(name, {
+                      required,
+                      pattern:
+                        name === "email"
+                          ? /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g
+                          : /./,
+                      minLength: name === "phone" ? 10 : 1,
+                      maxLength: name === "phone" ? 13 : 9999999999,
+                    })}
+                  />
+                </div>
+              </label>
+              <div className="text-xs text-red-600">
+                {name === "email" && errors.email?.type == "pattern"
+                  ? "Input valid email"
+                  : ""}
+                {name === "email" && errors.email?.type == "required"
+                  ? "Input email"
+                  : ""}
+                {name === "firstname" && errors.firstname?.type == "required"
+                  ? "Input First Name"
+                  : ""}
+                {name === "phone_number" &&
+                errors.phone_number?.type == "required"
+                  ? "Input Phone Number"
+                  : ""}
+                {name === "lastname" && errors.lastname?.type == "required"
+                  ? "Input LastName"
+                  : ""}
+                {name === "phone_or_email" &&
+                errors.phone_or_email?.type === "required"
+                  ? "Input email or phone number"
+                  : ""}
+              </div>
             </div>
           );
         }
@@ -53,12 +109,21 @@ function FormText(props) {
         return (
           <div id="input_container" className="px-3 mb-4" key={index}>
             <label>
-              <div className="text-sm mb-2 font-semibold">{label}</div>
+              <div className="text-sm mb-2">{label}</div>
               <div>
                 <input
-                  className="w-full py-2 px-2 mb-4 bg-gray-100 rounded focus:outline-none"
+                  className="w-full py-2 px-2 bg-gray-100 rounded focus:outline-none"
                   type={type}
                   name={name}
+                  defaultValue={
+                    defaultValue == ""
+                      ? ""
+                      : name == "title"
+                      ? defaultValue.title
+                      : name == "video_link"
+                      ? defaultValue.video_link
+                      : name == "module_text" && defaultValue.module_text
+                  }
                   placeholder={placeholder}
                   {...register(name, {
                     required,
@@ -72,9 +137,28 @@ function FormText(props) {
                 />
               </div>
             </label>
-            {form_list.instructions === true && errors.email?.type == "pattern"
-              ? "Input valid email"
-              : ""}
+            <div className="text-xs text-red-600">
+              {name === "email" && errors.email?.type == "pattern"
+                ? "Input valid email"
+                : ""}
+              {name === "email" && errors.email?.type == "required"
+                ? "Input email"
+                : ""}
+              {name === "firstname" && errors.firstname?.type == "required"
+                ? "Input First Name"
+                : ""}
+              {name === "phone_number" &&
+              errors.phone_number?.type == "required"
+                ? "Input Phone Number"
+                : ""}
+              {name === "lastname" && errors.lastname?.type == "required"
+                ? "Input LastName"
+                : ""}
+              {name === "phone_or_email" &&
+              errors.phone_or_email?.type === "required"
+                ? "Input email or phone number"
+                : ""}
+            </div>
           </div>
         );
       })}

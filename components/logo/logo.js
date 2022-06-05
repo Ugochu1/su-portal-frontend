@@ -1,13 +1,15 @@
 import Image from "next/image";
+import {useRouter} from "next/router"
 
 function Logo() {
+  let router = useRouter()
+  function takeHome() {
+    router.push("/")
+  }
   return (
-    <div className="flex justify-center items-center mb-4">
+    <div className="flex justify-center items-center cursor-pointer " onClick={takeHome}>
       <div>
-        <div className="text-3xl font-semibold mr-1 text-green-600 tracking-tight"></div>
-      </div>
-      <div>
-        <Image src="/pngkit_scripture-png_1028698.png" alt="SU Logo" width={40} height={40}/>
+        <Image src="/pngkit_scripture-png_1028698.png" alt="SU Logo" width={30} height={30}/>
       </div>
     </div>
   )

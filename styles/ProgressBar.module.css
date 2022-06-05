@@ -1,0 +1,62 @@
+.li {
+  position: relative;
+  text-align: center;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center
+}
+
+.li:before {
+  content: "";
+  width: 14px;
+  height: 14px;
+  border: 1px solid lightgray;
+  display: block;
+  margin: 10px auto 10px auto;
+  border-radius: 50%;
+  background: lightgray;
+}
+
+.li:after {
+  content: "";
+  position: absolute;
+  width: 2px;
+  height: 100%;
+  background: lightgray;
+  left: 48%;
+  top: -60%;
+  z-index: -1;
+}
+
+.li:first-child:after {
+  content: none;
+}
+
+.li.done {
+  color: blue;
+}
+
+.li.done:before {
+  background: blue;
+  border-color: blue;
+}
+
+.li.notdone {
+  color: red;
+}
+
+.li.notdone:before {
+  background: red;
+  border-color: red;
+}
+
+.li.done + .li:after {
+  background: blue;
+  border-color: blue;
+}
+
+.li.notdone + .li:after {
+  background: red;
+  border-color: red;
+}
