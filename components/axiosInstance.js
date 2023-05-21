@@ -1,7 +1,7 @@
 import axios from "axios"
 
 const axiosInstance = axios.create({
-  baseURL: "https://suportal-idr1.herokuapp.com/",
+  baseURL: "https://vermillion-dodol-cca97b.netlify.app",
   timeout: 30000,
   headers: {
     "Content-Type": "application/json"
