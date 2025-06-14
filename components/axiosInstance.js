@@ -1,7 +1,7 @@
 import axios from "axios"
 
 const axiosInstance = axios.create({
-  baseURL: "https://vermillion-dodol-cca97b.netlify.app",
+  baseURL: process.env.API_URL,
   timeout: 30000,
   headers: {
     "Content-Type": "application/json"
