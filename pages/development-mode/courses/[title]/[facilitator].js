@@ -227,7 +227,7 @@ function Course(props) {
           <button
             className="m-1 p-2 bg-gray-500 w-full md:w-1/3 rounded-lg text-gray-50"
             disabled={
-              modulesArray.length < 4 ? (changer == true ? true : true) : false
+              modulesArray.length < 1 ? (changer == true ? true : true) : false
             }
             onClick={deployCourse}
           >
