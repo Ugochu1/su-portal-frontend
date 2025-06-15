@@ -31,7 +31,7 @@ function Courses(props) {
   }, [props]);
 
   return (
-    <div className="bg-gray-100 h-full font-archivo">
+    <div className="bg-gray-100 min-h-screen font-archivo">
       {modalState == true && (
         <AlertMessenger message={modalMessage} setModalState={setModalState} />
       )}

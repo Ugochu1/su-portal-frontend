@@ -22,7 +22,7 @@ function DevelopmentMode() {
   }
 
   return (
-    <div className="h-full bg-gray-100 font-archivo">
+    <div className="min-h-screen bg-gray-100 font-archivo">
       {modalState == true && (
         <AlertMessenger message={modalMessage} setModalState={setModalState} />
       )}

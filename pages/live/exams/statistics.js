@@ -40,7 +40,7 @@ function ExamStatistics({ myCourses, userId }) {
   }
 
   return (
-    <div className="bg-gray-100 font-archivo">
+    <div className="bg-gray-100 min-h-screen font-archivo">
       {loading == true && <Loader />}
       {resultPrompt == true && (
         <div className="fixed top-0 inset-0 flex justify-center bg-gray-600 bg-opacity-40 z-30">

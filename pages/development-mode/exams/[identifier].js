@@ -98,7 +98,7 @@ function ModifyExam({ exam, userId }) {
   }
 
   return (
-    <div className="bg-gray-100 font-archivo">
+    <div className="min-h-screen bg-gray-100 font-archivo">
       {loading == true && <Loader />}
       {modalState == true && (
         <AlertMessenger message={alertMessage} setModalState={setModalState} />

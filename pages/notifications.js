@@ -5,7 +5,7 @@ import Logo from "../components/logo/logo";
 function Notifications({ data }) {
 
   return (
-    <div className="bg-gray-100 font-archivo">
+    <div className="min-h-screen bg-gray-100 font-archivo">
       <div className="p-5 flex">
         <Logo />
       </div>

@@ -49,7 +49,7 @@ function DevExams({ sentData }) {
   }
 
   return (
-    <div className="font-archivo bg-gray-100 h-screen">
+    <div className="font-archivo bg-gray-100 min-h-screen">
       {modalState == true && (
         <AlertMessenger message={alertMessage} setModalState={setModalState} />
       )}

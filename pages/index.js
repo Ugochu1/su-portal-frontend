@@ -36,7 +36,7 @@ function Dashboard({ data, notifs, messages }) {
   }
 
   return (
-    <div className="h-full w-full bg-gray-100 font-archivo">
+    <div className="min-h-screen w-full bg-gray-100 font-archivo">
       {loading == true && <Loader />}
       <div className="flex justify-between items-center p-5">
         <Logo />

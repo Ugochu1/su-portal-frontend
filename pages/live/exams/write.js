@@ -204,7 +204,7 @@ function WriteExam({ exam, write_exam, userId, firstname, lastname }) {
         </div>
       )}
       {examSubmitted == true ? (
-        <div className="font-archivo bg-gray-100 h-screen">
+        <div className="font-archivo bg-gray-100 min-h-screen">
           <div className="flex flex-wrap p-5 items-center justify-between">
             <div>
               <div className="text-sm text-gray-600">
