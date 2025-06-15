@@ -175,180 +175,181 @@ function WriteExam({ exam, write_exam, userId, firstname, lastname }) {
 
   useEffect(() => () => removeCookies("write_exam"));
   return (
-    <div>
-      {showPrompt == true && (
-        <div className="fixed top-0 inset-0 bg-gray-700 z-30 flex justify-center bg-opacity-30 font-archivo">
-          <div className="mt-7 p-5 bg-white w-full md:w-1/3 h-40 rounded">
-            <div className="text-2xl text-red-600">Submit?</div>
-            <div className="mt-2 text-gray-600">
-              Are you sure you want to submit this exam
-            </div>
-            <div className="flex mt-5 justify-between items-center">
-              <button
-                onClick={() => setShowPrompt(false)}
-                className="w-1/3 bg-red-500 hover:bg-red-400 text-red-50 p-2 rounded"
-              >
-                No
-              </button>
-              <button
-                onClick={() => {
-                  setExamSubmitted(true);
-                  setShowPrompt(false);
-                }}
-                className="w-1/3 hover:bg-green-500 bg-green-600 text-green-50 p-2 rounded"
-              >
-                Yes
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-      {examSubmitted == true ? (
-        <div className="font-archivo bg-gray-100 min-h-screen">
-          <div className="flex flex-wrap p-5 items-center justify-between">
-            <div>
-              <div className="text-sm text-gray-600">
-                &copy; Scripture Union Exams
+    <>
+      <div>
+        {showPrompt == true && (
+          <div className="fixed top-0 inset-0 bg-gray-700 z-30 flex justify-center bg-opacity-30 font-archivo">
+            <div className="mt-7 p-5 bg-white w-full md:w-1/3 h-40 rounded">
+              <div className="text-2xl text-red-600">Submit?</div>
+              <div className="mt-2 text-gray-600">
+                Are you sure you want to submit this exam
               </div>
-              <div className="text-2xl text-green-600">{exam.title}</div>
-            </div>
-          </div>
-          <div className="flex justify-center">
-            <div className="p-5 bg-white w-full md:w-1/3 mt-5 md:rounded shadow">
-              <div className="text-3xl text-green-700">
-                <div>Report</div>
-              </div>
-              <div className="flex mt-3">
-                <div className="mr-1 text-gray-500">Status:</div>
-                <div
-                  className={
-                    submittedStatus == "Pending"
-                      ? "text-orange-300"
-                      : submittedStatus == "Submitted" && ""
-                  }
+              <div className="flex mt-5 justify-between items-center">
+                <button
+                  onClick={() => setShowPrompt(false)}
+                  className="w-1/3 bg-red-500 hover:bg-red-400 text-red-50 p-2 rounded"
                 >
-                  {submittedStatus}
-                </div>
-              </div>
-              <div className="flex flex-col items-center justify-center mt-5">
-                <div className="text-gray-900 mb-2">Your Score:</div>
-                <div
-                  className={
-                    score == "Calculating..."
-                      ? ""
-                      : "text-6xl text-green-600 font-semibold"
-                  }
+                  No
+                </button>
+                <button
+                  onClick={() => {
+                    setExamSubmitted(true);
+                    setShowPrompt(false);
+                  }}
+                  className="w-1/3 hover:bg-green-500 bg-green-600 text-green-50 p-2 rounded"
                 >
-                  {score}
-                </div>
-                <div className="p-3 w-full text-center bg-blue-100 text-blue-700 rounded shadow-sm mt-5">
-                  Do not share the access key with anybody.
-                </div>
-                {submittedStatus == "Submitted" && (
-                  <div className="text-gray-500 mt-8">
-                    You will be logged out in{" "}
-                    <Countdown
-                      date={Date.now() + 10000}
-                      onComplete={() => {
-                        removeCookies("id");
-                        removeCookies("accessToken");
-                        removeCookies("adminToken");
-                        removeCookies("exam");
-                        removeCookies("write_exam");
-                        router.push("/login");
-                      }}
-                    />
-                  </div>
-                )}
+                  Yes
+                </button>
               </div>
             </div>
           </div>
-        </div>
-      ) : (
-        <div className="bg-gray-100 h-screen font-archivo">
-          <div className="flex flex-wrap p-5 items-center justify-between border-b border-gray-300 shadow-sm">
-            <div>
-              <div className="text-sm text-gray-600">
-                &copy; Scripture Union Exams
-              </div>
-              <div className="text-2xl text-green-600">{exam.title}</div>
-            </div>
-            <div className="mt-2 flex flex-col items-center">
-              <div className="fixed bottom-6 right-3 border border-gray-600 text-xl rounded-full bg-white p-3">
-                <div>{timer}</div>
-              </div>
-              <div className="text-gray-600">
-                {examStarted == false ? (
-                  <button
-                    onClick={() => setExamStarted(true)}
-                    className="p-2 bg-green-600 rounded hover:bg-green-400 text-green-50 text-sm"
-                  >
-                    Start Exam
-                  </button>
-                ) : (
-                  <button
-                    onClick={() => setShowPrompt(true)}
-                    className="p-2 bg-green-600 rounded hover:bg-green-400 text-green-50 text-sm"
-                  >
-                    Submit Exam
-                  </button>
-                )}
-              </div>
-            </div>
-          </div>
-          {examStarted == false && (
-            <div className="w-full bg-white p-5 h-4/6 border-b border-gray-300 flex items-center justify-center">
+        )}
+        {examSubmitted == true ? (
+          <div className="font-archivo bg-gray-100 min-h-screen">
+            <div className="flex flex-wrap p-5 items-center justify-between">
               <div>
-                <div className="text-4xl text-gray-500">Instructions</div>
-                <div className="md:w-1/2 leading-8 mt-5 text-gray-600">
-                  Your time has started. Exam duration is{" "}
-                  {exam.duration == "1800000"
-                    ? "30 minutes"
-                    : exam.duration == "2700000"
-                    ? "45 minutes"
-                    : exam.duration == "3600000"
-                    ? "1 hour"
-                    : exam.duration == "4500000"
-                    ? "1 hour 15 minutes"
-                    : exam.duration == "5400000" && "1 hour 30 minutes"}
-                  . Please click on the {"'Start Exam'"} button at the top of
-                  the screen to begin your exam. There is a timer on the bottom
-                  right of the screen to help you keep track of time. Goodluck!
+                <div className="text-sm text-gray-600">
+                  &copy; Scripture Union Exams
+                </div>
+                <div className="text-2xl text-green-600">{exam.title}</div>
+              </div>
+            </div>
+            <div className="flex justify-center">
+              <div className="p-5 bg-white w-full md:w-1/3 mt-5 md:rounded shadow">
+                <div className="text-3xl text-green-700">
+                  <div>Report</div>
+                </div>
+                <div className="flex mt-3">
+                  <div className="mr-1 text-gray-500">Status:</div>
+                  <div
+                    className={
+                      submittedStatus == "Pending"
+                        ? "text-orange-300"
+                        : submittedStatus == "Submitted" && ""
+                    }
+                  >
+                    {submittedStatus}
+                  </div>
+                </div>
+                <div className="flex flex-col items-center justify-center mt-5">
+                  <div className="text-gray-900 mb-2">Your Score:</div>
+                  <div
+                    className={
+                      score == "Calculating..."
+                        ? ""
+                        : "text-6xl text-green-600 font-semibold"
+                    }
+                  >
+                    {score}
+                  </div>
+                  <div className="p-3 w-full text-center bg-blue-100 text-blue-700 rounded shadow-sm mt-5">
+                    Do not share the access key with anybody.
+                  </div>
+                  {submittedStatus == "Submitted" && (
+                    <div className="text-gray-500 mt-8">
+                      You will be logged out in{" "}
+                      <Countdown
+                        date={Date.now() + 10000}
+                        onComplete={() => {
+                          removeCookies("id");
+                          removeCookies("accessToken");
+                          removeCookies("adminToken");
+                          removeCookies("exam");
+                          removeCookies("write_exam");
+                          router.push("/login");
+                        }}
+                      />
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
-          )}
-          {examStarted == true && (
-            <div className="w-full bg-white md:h-4/6 md:flex border-b border-gray-300 md:overflow-y-auto">
-              <div className="md:w-1/5 w-full flex flex-col justify-center md:border-r p-5 border-gray-300">
-                {sections.map((section, index) => {
-                  return (
-                    <div
-                      key={index}
-                      onClick={() => {
-                        setActiveTab(index);
-                        setActiveQuestion(0);
-                      }}
-                      className={
-                        index == activeTab
-                          ? "w-full p-2 rounded-lg text-center text-green-50 bg-green-500 mb-2 border border-green-400"
-                          : "w-full p-2 rounded-lg text-center text-gray-600 mb-2 border border-gray-400 cursor-pointer hover:bg-gray-100"
-                      }
-                    >
-                      {section.title}
-                    </div>
-                  );
-                })}
-              </div>
-              <div className="md:p-10 p-5 md:w-4/5">{questions}</div>
-            </div>
-          )}
-          <div className="mt-32">
-            <Footer />
           </div>
-        </div>
-      )}
-    </div>
+        ) : (
+          <div className="bg-gray-100 h-screen font-archivo">
+            <div className="flex flex-wrap p-5 items-center justify-between border-b border-gray-300 shadow-sm">
+              <div>
+                <div className="text-sm text-gray-600">
+                  &copy; Scripture Union Exams
+                </div>
+                <div className="text-2xl text-green-600">{exam.title}</div>
+              </div>
+              <div className="mt-2 flex flex-col items-center">
+                <div className="fixed bottom-6 right-3 border border-gray-600 text-xl rounded-full bg-white p-3">
+                  <div>{timer}</div>
+                </div>
+                <div className="text-gray-600">
+                  {examStarted == false ? (
+                    <button
+                      onClick={() => setExamStarted(true)}
+                      className="p-2 bg-green-600 rounded hover:bg-green-400 text-green-50 text-sm"
+                    >
+                      Start Exam
+                    </button>
+                  ) : (
+                    <button
+                      onClick={() => setShowPrompt(true)}
+                      className="p-2 bg-green-600 rounded hover:bg-green-400 text-green-50 text-sm"
+                    >
+                      Submit Exam
+                    </button>
+                  )}
+                </div>
+              </div>
+            </div>
+            {examStarted == false && (
+              <div className="w-full bg-white p-5 h-4/6 border-b border-gray-300 flex items-center justify-center">
+                <div>
+                  <div className="text-4xl text-gray-500">Instructions</div>
+                  <div className="md:w-1/2 leading-8 mt-5 text-gray-600">
+                    Your time has started. Exam duration is{" "}
+                    {exam.duration == "1800000"
+                      ? "30 minutes"
+                      : exam.duration == "2700000"
+                      ? "45 minutes"
+                      : exam.duration == "3600000"
+                      ? "1 hour"
+                      : exam.duration == "4500000"
+                      ? "1 hour 15 minutes"
+                      : exam.duration == "5400000" && "1 hour 30 minutes"}
+                    . Please click on the {"'Start Exam'"} button at the top of
+                    the screen to begin your exam. There is a timer on the
+                    bottom right of the screen to help you keep track of time.
+                    Goodluck!
+                  </div>
+                </div>
+              </div>
+            )}
+            {examStarted == true && (
+              <div className="w-full bg-white md:h-4/6 md:flex border-b border-gray-300 md:overflow-y-auto">
+                <div className="md:w-1/5 w-full flex flex-col justify-center md:border-r p-5 border-gray-300">
+                  {sections.map((section, index) => {
+                    return (
+                      <div
+                        key={index}
+                        onClick={() => {
+                          setActiveTab(index);
+                          setActiveQuestion(0);
+                        }}
+                        className={
+                          index == activeTab
+                            ? "w-full p-2 rounded-lg text-center text-green-50 bg-green-500 mb-2 border border-green-400"
+                            : "w-full p-2 rounded-lg text-center text-gray-600 mb-2 border border-gray-400 cursor-pointer hover:bg-gray-100"
+                        }
+                      >
+                        {section.title}
+                      </div>
+                    );
+                  })}
+                </div>
+                <div className="md:p-10 p-5 md:w-4/5">{questions}</div>
+              </div>
+            )}
+          </div>
+        )}
+      </div>
+      <Footer />
+    </>
   );
 }
 

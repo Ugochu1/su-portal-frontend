@@ -69,7 +69,10 @@ function InitializeExam({ admins, userId }) {
           } else {
             setAlertMessage(response.data.message);
             setModalState(true);
-            if (response.data.message == `You have successfully initialized exam ${data.title}`){
+            if (
+              response.data.message ==
+              `You have successfully initialized exam ${data.title}`
+            ) {
               axiosInstance.post("/send_notification", {
                 message: `The ${data.title} exam has been initialized, and you have been added as an examiner`,
                 receiver,
@@ -86,46 +89,50 @@ function InitializeExam({ admins, userId }) {
   }
 
   return (
-    <div className="bg-gray-100 min-h-screen font-archivo">
-      {loading == true && <Loader />}
-      {modalState == true && (
-        <AlertMessenger message={alertMessage} setModalState={setModalState} />
-      )}
-      <div className="flex p-5">
-        <Logo />
-      </div>
-      <div className="flex justify-center">
-        <div className="w-full md:w-1/2">
-          <AlertBox message="You are in development mode" />
+    <>
+      <div className="bg-gray-100 min-h-screen font-archivo">
+        {loading == true && <Loader />}
+        {modalState == true && (
+          <AlertMessenger
+            message={alertMessage}
+            setModalState={setModalState}
+          />
+        )}
+        <div className="flex p-5">
+          <Logo />
         </div>
-      </div>
-      <div className="flex justify-center mt-3">
-        <div className="bg-gray-50 p-3 w-full md:shadow-sm md:rounded-lg md:w-3/4">
-          <div className="text-2xl text-green-800 flex justify-center p-5">
-            Initialize Exam
+        <div className="flex justify-center">
+          <div className="w-full md:w-1/2">
+            <AlertBox message="You are in development mode" />
           </div>
-          <div className="mt-5">
-            <form onSubmit={handleSubmit(onSubmit)}>
-              <div className="flex md:flex-row flex-col justify-around w-full">
-                <div className="md:w-1/3 w-full p-1">
-                  <div>
-                    <label>
-                      <p className="text-gray-600 p-1">Exam Name: </p>
-                      <input
-                        type="text"
-                        placeholder="Add distinguishing element, like year.."
-                        {...register("title", { required: true })}
-                        className="w-full rounded-lg px-2 py-1 bg-gray-200 focus:outline-none text-gray-600"
-                      />
-                    </label>
-                  </div>
-                  <div className="mt-3">
-                    <label>
-                      <p className="text-gray-600 p-1">Choose Duration: </p>
-                      <select
-                        name="duration"
-                        {...register("duration", { required: true })}
-                        className="form-select appearance-none
+        </div>
+        <div className="flex justify-center mt-3">
+          <div className="bg-gray-50 p-3 w-full md:shadow-sm md:rounded-lg md:w-3/4">
+            <div className="text-2xl text-green-800 flex justify-center p-5">
+              Initialize Exam
+            </div>
+            <div className="mt-5">
+              <form onSubmit={handleSubmit(onSubmit)}>
+                <div className="flex md:flex-row flex-col justify-around w-full">
+                  <div className="md:w-1/3 w-full p-1">
+                    <div>
+                      <label>
+                        <p className="text-gray-600 p-1">Exam Name: </p>
+                        <input
+                          type="text"
+                          placeholder="Add distinguishing element, like year.."
+                          {...register("title", { required: true })}
+                          className="w-full rounded-lg px-2 py-1 bg-gray-200 focus:outline-none text-gray-600"
+                        />
+                      </label>
+                    </div>
+                    <div className="mt-3">
+                      <label>
+                        <p className="text-gray-600 p-1">Choose Duration: </p>
+                        <select
+                          name="duration"
+                          {...register("duration", { required: true })}
+                          className="form-select appearance-none
       block
       w-full
       px-3
@@ -140,51 +147,51 @@ function InitializeExam({ admins, userId }) {
       ease-in-out
       m-0
       focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                      >
-                        <option value="1800000">30 minutes</option>
-                        <option value="2700000">45 minutes</option>
-                        <option value="3600000">1 hour</option>
-                        <option value="4500000">1 hour, 15 minutes</option>
-                        <option value="5400000">1 hour, 30 minutes</option>
-                      </select>
-                    </label>
-                  </div>
-                  <div className="mt-5 rounded-md p-5 border-blue-500 border text-sm text-blue-700">
-                    A unique access key would be generated for the exam on
-                    initialization.
-                  </div>
-                </div>
-                <div className="md:w-1/2 flex flex-col items-center w-full p-1">
-                  <div className="text-2xl text-green-700 mt-3">Sections</div>
-                  <div>
-                    <AlertBox message="Maximum number of sections to a course is 4. Sum of quotas must be equal to 1." />
-                  </div>
-                  <div className="mt-3 w-full">
-                    {sections.map((section, index) => {
-                      return (
-                        <div
-                          key={index}
-                          className="p-5 w-full rounded-lg bg-white border border-gray-300 text-gray-600 mt-5"
                         >
-                          <div>
-                            <div className="mb-3 text-green-50 w-7 h-7 flex items-center justify-center rounded-full bg-green-600">
-                              {index + 1}
+                          <option value="1800000">30 minutes</option>
+                          <option value="2700000">45 minutes</option>
+                          <option value="3600000">1 hour</option>
+                          <option value="4500000">1 hour, 15 minutes</option>
+                          <option value="5400000">1 hour, 30 minutes</option>
+                        </select>
+                      </label>
+                    </div>
+                    <div className="mt-5 rounded-md p-5 border-blue-500 border text-sm text-blue-700">
+                      A unique access key would be generated for the exam on
+                      initialization.
+                    </div>
+                  </div>
+                  <div className="md:w-1/2 flex flex-col items-center w-full p-1">
+                    <div className="text-2xl text-green-700 mt-3">Sections</div>
+                    <div>
+                      <AlertBox message="Maximum number of sections to a course is 4. Sum of quotas must be equal to 1." />
+                    </div>
+                    <div className="mt-3 w-full">
+                      {sections.map((section, index) => {
+                        return (
+                          <div
+                            key={index}
+                            className="p-5 w-full rounded-lg bg-white border border-gray-300 text-gray-600 mt-5"
+                          >
+                            <div>
+                              <div className="mb-3 text-green-50 w-7 h-7 flex items-center justify-center rounded-full bg-green-600">
+                                {index + 1}
+                              </div>
+                              <label>
+                                <p>Section Title: </p>
+                                <input
+                                  type="text"
+                                  onChange={(e) => handleSectionTitle(e, index)}
+                                  required={true}
+                                  className="w-full text-sm rounded-lg px-2 py-1 bg-gray-200 focus:outline-none text-gray-600"
+                                />
+                              </label>
                             </div>
-                            <label>
-                              <p>Section Title: </p>
-                              <input
-                                type="text"
-                                onChange={(e) => handleSectionTitle(e, index)}
-                                required={true}
-                                className="w-full text-sm rounded-lg px-2 py-1 bg-gray-200 focus:outline-none text-gray-600"
-                              />
-                            </label>
-                          </div>
-                          <div className="mt-5">
-                            <select
-                              defaultValue={section.examiner}
-                              onChange={(e) => handleChange(e, index)}
-                              className="form-select appearance-none
+                            <div className="mt-5">
+                              <select
+                                defaultValue={section.examiner}
+                                onChange={(e) => handleChange(e, index)}
+                                className="form-select appearance-none
       block
       w-full
       px-3
@@ -199,69 +206,68 @@ function InitializeExam({ admins, userId }) {
       ease-in-out
       m-0
       focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                            >
-                              <option value={userId}>Me</option>
-                              {admins.map((admin, index) => {
-                                return (
-                                  <option value={admin._id} key={index}>
-                                    {admin.firstname + " " + admin.lastname}
-                                  </option>
-                                );
-                              })}
-                            </select>
+                              >
+                                <option value={userId}>Me</option>
+                                {admins.map((admin, index) => {
+                                  return (
+                                    <option value={admin._id} key={index}>
+                                      {admin.firstname + " " + admin.lastname}
+                                    </option>
+                                  );
+                                })}
+                              </select>
+                            </div>
+                            <div className="mt-5 text-gray-600">
+                              <label>
+                                <p>Quota (represent with decimals):</p>
+                                <input
+                                  type="text"
+                                  placeholder="Example: 0.25 for 1/4"
+                                  onChange={(e) => handleSectionQuota(e, index)}
+                                  required={true}
+                                  className="w-full text-sm rounded-lg px-2 py-1 bg-gray-200 focus:outline-none text-gray-600"
+                                />
+                              </label>
+                            </div>
+                            <div className="mt-5 flex justify-end">
+                              {sections.length - 1 == index &&
+                                sections.length < 4 && (
+                                  <div
+                                    onClick={() =>
+                                      setSections([
+                                        ...sections,
+                                        {
+                                          title: "",
+                                          quota: "",
+                                          examiner: userId,
+                                          questions: [],
+                                        },
+                                      ])
+                                    }
+                                    className="text-green-50 rounded p-2 bg-green-600 cursor-pointer hover:bg-green-500"
+                                  >
+                                    Add Section
+                                  </div>
+                                )}
+                            </div>
                           </div>
-                          <div className="mt-5 text-gray-600">
-                            <label>
-                              <p>Quota (represent with decimals):</p>
-                              <input
-                                type="text"
-                                placeholder="Example: 0.25 for 1/4"
-                                onChange={(e) => handleSectionQuota(e, index)}
-                                required={true}
-                                className="w-full text-sm rounded-lg px-2 py-1 bg-gray-200 focus:outline-none text-gray-600"
-                              />
-                            </label>
-                          </div>
-                          <div className="mt-5 flex justify-end">
-                            {sections.length - 1 == index &&
-                              sections.length < 4 && (
-                                <div
-                                  onClick={() =>
-                                    setSections([
-                                      ...sections,
-                                      {
-                                        title: "",
-                                        quota: "",
-                                        examiner: userId,
-                                        questions: [],
-                                      },
-                                    ])
-                                  }
-                                  className="text-green-50 rounded p-2 bg-green-600 cursor-pointer hover:bg-green-500"
-                                >
-                                  Add Section
-                                </div>
-                              )}
-                          </div>
-                        </div>
-                      );
-                    })}
+                        );
+                      })}
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className="flex justify-center mt-10">
-                <button className="bg-gray-600 p-3 text-lg uppercase rounded text-gray-50 hover:bg-gray-400">
-                  Initialize Exam
-                </button>
-              </div>
-            </form>
+                <div className="flex justify-center mt-10">
+                  <button className="bg-gray-600 p-3 text-lg uppercase rounded text-gray-50 hover:bg-gray-400">
+                    Initialize Exam
+                  </button>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       </div>
-      <div className="mt-20">
-        <Footer />
-      </div>
-    </div>
+      <Footer />
+    </>
   );
 }
 

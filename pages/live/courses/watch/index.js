@@ -12,50 +12,49 @@ function CourseDisplay(props) {
   }
 
   function goToChat() {
-    router.push("/messages/" + props.identifier)
+    router.push("/messages/" + props.identifier);
   }
 
   return (
-    <div className="bg-gray-100 min-h-screen font-archivo">
-      <div className="p-5 flex">
-        <Logo />
-      </div>
-      <div className="flex flex-col items-center">
-        <div className="bg-gray-50 md:w-1/2 w-full p-5 rounded md:shadow-sm">
-          <div className="text-3xl text-green-800">{props.title}</div>
-          <div className="text-green-700">By {props.facilitator}</div>
-          
+    <>
+      <div className="bg-gray-100 min-h-screen font-archivo">
+        <div className="p-5 flex">
+          <Logo />
         </div>
-        <div className="p-5 md:w-1/2 w-full mt-5">
-          <div className="text-green-800">Choose Module</div>
-          <div className="mt-5">
-            {props.modules.map((each_module, index) => {
-              return (
-                <div
-                  key={index}
-                  className="mt-2 p-5 bg-white rounded shadow-sm"
-                >
-                  <div className="text-gray-500 text-sm">
-                    {each_module.title}
+        <div className="flex flex-col items-center">
+          <div className="bg-gray-50 md:w-1/2 w-full p-5 rounded md:shadow-sm">
+            <div className="text-3xl text-green-800">{props.title}</div>
+            <div className="text-green-700">By {props.facilitator}</div>
+          </div>
+          <div className="p-5 md:w-1/2 w-full mt-5">
+            <div className="text-green-800">Choose Module</div>
+            <div className="mt-5">
+              {props.modules.map((each_module, index) => {
+                return (
+                  <div
+                    key={index}
+                    className="mt-2 p-5 bg-white rounded shadow-sm"
+                  >
+                    <div className="text-gray-500 text-sm">
+                      {each_module.title}
+                    </div>
+                    <div className="mt-3">
+                      <button
+                        onClick={() => goToModule(index)}
+                        className="bg-green-600 hover:bg-green-500 px-4 py-1 text-sm rounded text-green-50"
+                      >
+                        Watch
+                      </button>
+                    </div>
                   </div>
-                  <div className="mt-3">
-                    <button
-                      onClick={() => goToModule(index)}
-                      className="bg-green-600 hover:bg-green-500 px-4 py-1 text-sm rounded text-green-50"
-                    >
-                      Watch
-                    </button>
-                  </div>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>
-      <div className="mt-20">
-        <Footer />
-      </div>
-    </div>
+      <Footer />
+    </>
   );
 }
 
@@ -103,9 +102,9 @@ export async function getServerSideProps(context) {
     } else {
       return {
         redirect: {
-          destination: "/live/courses"
-        }
-      }
+          destination: "/live/courses",
+        },
+      };
     }
   }
 }

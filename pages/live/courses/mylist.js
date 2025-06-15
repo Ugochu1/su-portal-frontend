@@ -31,45 +31,48 @@ function MyCourses(props) {
   }
 
   return (
-    <div className="bg-gray-100 min-h-screen font-archivo">
-      {modalState == true && (
-        <AlertMessenger setModalState={setModalState} message={modalMessage} />
-      )}
-      {loading == true && <Loader />}
-      <div className="flex p-5 justify-start">
-        <Logo />
-      </div>
-      <div className="flex flex-col items-center w-full">
-        <div className="md:w-1/2 w-full p-3">
-          <div className="text-2xl text-green-700">Enrolled Courses</div>
-          <div>
-            <input
-              onChange={filterCourses}
-              className="w-full p-2 bg-gray-200 shadow-sm rounded mt-3 text-sm focus:outline-none"
-              type="text"
-              placeholder="Search course name..."
-            />
-          </div>
-          <div className="w-full mt-5">
-            {courses.length > 0 ? (
-              <MyCourseLister
-                details={courses}
-                setLoading={setLoading}
-                setModalMessage={setModalMessage}
-                setModalState={setModalState}
+    <>
+      <div className="bg-gray-100 min-h-screen font-archivo">
+        {modalState == true && (
+          <AlertMessenger
+            setModalState={setModalState}
+            message={modalMessage}
+          />
+        )}
+        {loading == true && <Loader />}
+        <div className="flex p-5 justify-start">
+          <Logo />
+        </div>
+        <div className="flex flex-col items-center w-full">
+          <div className="md:w-1/2 w-full p-3">
+            <div className="text-2xl text-green-700">Enrolled Courses</div>
+            <div>
+              <input
+                onChange={filterCourses}
+                className="w-full p-2 bg-gray-200 shadow-sm rounded mt-3 text-sm focus:outline-none"
+                type="text"
+                placeholder="Search course name..."
               />
-            ) : (
-              <div className="w-full text-gray-500 bg-gray-50 h-64 border border-gray-400 rounded flex justify-center items-center">
-                You are not enrolled in any course
-              </div>
-            )}
+            </div>
+            <div className="w-full mt-5">
+              {courses.length > 0 ? (
+                <MyCourseLister
+                  details={courses}
+                  setLoading={setLoading}
+                  setModalMessage={setModalMessage}
+                  setModalState={setModalState}
+                />
+              ) : (
+                <div className="w-full text-gray-500 bg-gray-50 h-64 border border-gray-400 rounded flex justify-center items-center">
+                  You are not enrolled in any course
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>
-      <div className="mt-32">
-        <Footer />
-      </div>
-    </div>
+      <Footer />
+    </>
   );
 }
 

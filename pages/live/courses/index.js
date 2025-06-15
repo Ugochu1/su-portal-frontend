@@ -29,45 +29,48 @@ function Courses({ data }) {
   }
 
   return (
-    <div className="bg-gray-100 min-h-screen font-archivo">
-      {modalState == true && (
-        <AlertMessenger setModalState={setModalState} message={modalMessage} />
-      )}
-      {loading == true && <Loader />}
-      <div className="flex p-5 justify-start">
-        <Logo />
-      </div>
-      <div className="flex flex-col items-center w-full">
-        <div className="md:w-1/2 w-full p-3">
-          <div className="text-2xl text-green-700">Available Courses</div>
-          <div>
-            <input
-              type="text"
-              placeholder="Search course name..."
-              className="bg-gray-200 mt-3 p-2 w-full rounded shadow-sm focus:outline-none text-sm"
-              onChange={filterCourses}
-            />
-          </div>
-          <div className="w-full mt-5">
-            {courses.length > 0 ? (
-              <LiveCourseLister
-                details={courses}
-                setLoading={setLoading}
-                setModalMessage={setModalMessage}
-                setModalState={setModalState}
+    <>
+      <div className="bg-gray-100 min-h-screen font-archivo">
+        {modalState == true && (
+          <AlertMessenger
+            setModalState={setModalState}
+            message={modalMessage}
+          />
+        )}
+        {loading == true && <Loader />}
+        <div className="flex p-5 justify-start">
+          <Logo />
+        </div>
+        <div className="flex flex-col items-center w-full">
+          <div className="md:w-1/2 w-full p-3">
+            <div className="text-2xl text-green-700">Available Courses</div>
+            <div>
+              <input
+                type="text"
+                placeholder="Search course name..."
+                className="bg-gray-200 mt-3 p-2 w-full rounded shadow-sm focus:outline-none text-sm"
+                onChange={filterCourses}
               />
-            ) : (
-              <div className="h-64 bg-gray-50 w-full border text-gray-600 rounded border-gray-400 flex justify-center items-center">
-                There are no courses available for viewing
-              </div>
-            )}
+            </div>
+            <div className="w-full mt-5">
+              {courses.length > 0 ? (
+                <LiveCourseLister
+                  details={courses}
+                  setLoading={setLoading}
+                  setModalMessage={setModalMessage}
+                  setModalState={setModalState}
+                />
+              ) : (
+                <div className="h-64 bg-gray-50 w-full border text-gray-600 rounded border-gray-400 flex justify-center items-center">
+                  There are no courses available for viewing
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>
-      <div className="mt-32">
-        <Footer />
-      </div>
-    </div>
+      <Footer />
+    </>
   );
 }
 
