@@ -80,18 +80,18 @@ function Module({ modulesArray, module_index, setChanger }) {
                           <p className="text-xl text-green-800">
                             {module_obj.title}
                           </p>
-                          <p className="text-xs text-blue-800 mt-2">
-                            {module_obj.video_link}
+                          <p className="text-xs text-blue-800 mt-2 overflow-ellipsis">
+                            {module_obj.video_link.substring(0, 50)}...
                           </p>
                           <p className="text-sm text-gray-700 mt-2">
                             {module_obj.module_text}
                           </p>
                           <p>{index == moduleNumber ? moduleNumber : null}</p>
                           <button
-                            className="mt-2 p-2 bg-green-500 shadow rounded-md text-sm text-green-50"
+                            className="mt-2 py-2 px-4 bg-green-500 rounded-md shadow hover:bg-green-300 text-green-50"
                             onClick={() => handleChange(index)}
                           >
-                            Change
+                            Edit
                           </button>
                         </div>
                       )}
@@ -102,16 +102,16 @@ function Module({ modulesArray, module_index, setChanger }) {
                         {module_obj.title}
                       </p>
                       <p className="text-xs text-blue-800 mt-2">
-                        {module_obj.video_link}
+                        {module_obj.video_link.substring(0, 50)}...
                       </p>
                       <p className="text-sm text-gray-700 mt-2">
                         {module_obj.module_text}
                       </p>
                       <button
-                        className="mt-2 p-2 bg-green-500 rounded-md shadow hover:bg-green-300 text-green-50"
+                        className="mt-2 py-2 px-4 bg-green-500 rounded-md shadow hover:bg-green-300 text-green-50"
                         onClick={() => handleChange(index)}
                       >
-                        Change
+                        Edit
                       </button>
                     </div>
                   )}

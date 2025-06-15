@@ -174,7 +174,7 @@ function Course(props) {
                 className="bg-gray-400 ml-5 py-1 px-5 rounded-md text-gray-50 hover:bg-gray-300 hover:text-gray-50"
                 onClick={addToArray}
               >
-                Add
+                Add Module
               </button>
             ) : (
               ""
