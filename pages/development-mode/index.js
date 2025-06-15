@@ -1,6 +1,5 @@
 import Alertbox from "../../components/alertbox";
 import Logo from "../../components/logo/logo";
-import Image from "next/image";
 import { AiOutlinePlus } from "react-icons/ai";
 import Footer from "../../components/footer";
 import CourseInitializer from "../../components/course/courseInit";
@@ -46,11 +45,11 @@ function DevelopmentMode() {
           <div className="w-full md:w-1/2 h-40 md:h-64 p-1">
             <div className="flex justify-around md:flex-col m-1 bg-white h-full shadow border items-center p-5">
               <div className="flex flex-col justify-center items-center">
-                <Image
+                <img
                   src="/online-course.png"
                   alt="Course Image"
-                  width={80}
-                  height={80}
+                  width="80"
+                  height="80"
                 />
                 <div className="font-bold text-gray-700 mt-2">Courses</div>
               </div>
@@ -75,11 +74,11 @@ function DevelopmentMode() {
           <div className="w-full md:w-1/2 h-40 md:h-64 p-1">
             <div className="flex justify-around md:flex-col m-1 bg-white h-full shadow border items-center p-5">
               <div className="flex flex-col justify-center items-center">
-                <Image
+                <img
                   src="/exam.png"
                   alt="Exam Image"
-                  width={90}
-                  height={90}
+                  width="90"
+                  height="90"
                 />
                 <div className="font-bold text-gray-700">Exams</div>
               </div>

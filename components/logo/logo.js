@@ -1,18 +1,25 @@
-import Image from "next/image";
-import {useRouter} from "next/router"
+import { useRouter } from "next/router";
 
 function Logo() {
-  let router = useRouter()
+  let router = useRouter();
   function takeHome() {
-    router.push("/")
+    router.push("/");
   }
   return (
-    <div className="flex justify-center items-center cursor-pointer " onClick={takeHome}>
+    <div
+      className="flex justify-center items-center cursor-pointer "
+      onClick={takeHome}
+    >
       <div>
-        <Image src="/pngkit_scripture-png_1028698.png" alt="SU Logo" width={30} height={30}/>
+        <img
+          src="/pngkit_scripture-png_1028698.png"
+          alt="SU Logo"
+          width="30"
+          height="30"
+        />
       </div>
     </div>
-  )
+  );
 }
 
 export default Logo;
